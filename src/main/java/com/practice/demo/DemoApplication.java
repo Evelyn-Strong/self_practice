@@ -1,18 +1,13 @@
 package com.practice.demo;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import com.fasterxml.jackson.dataformat.yaml.snakeyaml.Yaml;
 import com.practice.demo.annoExample.AnnotationExample;
+import com.practice.demo.threadExample.DemoThreadRunnable;
 import com.practice.demo.threadExample.RunnableExample;
 import com.practice.demo.util.YamlParserUtil;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Map;
 
 @SpringBootApplication
@@ -50,6 +45,19 @@ public class DemoApplication implements CommandLineRunner {
               }
             },"Thread 3");
             thread3.start();
+
+        }
+
+        if(testCase.get("threadLocalTest")){
+            DemoThreadRunnable r = new DemoThreadRunnable();
+            Thread thread1 =  new Thread(r,"Thread 1");
+            Thread thread2 =  new Thread(r,"Thread 2");
+
+            thread1.start();
+            thread2.start();
+
+            thread1.join();
+            thread2.join();
 
         }
 

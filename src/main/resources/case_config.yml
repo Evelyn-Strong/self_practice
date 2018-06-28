@@ -1,3 +1,4 @@
 annoTest: false
 funcInterface: false
-threadTest: true
+threadTest: false
+threadLocalTest: true
